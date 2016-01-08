@@ -1,0 +1,81 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=5304
+
+Easygit  is hosted at github: https://github.com/chemzqm/vim-easygit
+
+It's git wrapper plugin made to replace [fugitive](https://github.com/tpope/vim-fugitive),
+it can be used together with fugitive as commands are disabled by default.
+
+Easygit tried to introduce cleaner code and behaviour more friendly to user.
+
+## NOTICE
+
+Some command use command line utilities, they possibly not works on windows.
+
+## PHILOSOPHY
+
+Easygit tris hard to works well 80% of daily usage git commands while avoid
+overhead complexity.
+
+	* All commands work on the git repository of current file, not current
+	CWD!!  This could be a life saving if you switch the file of different
+	repo a lot, to make the command behaviour reasonable, you can set
+	|g:easygit_auto_lcd| to 1.
+
+	* Commands would always available, just set |g:easygit_enable_command|
+	to 1
+
+	* No useless messages any more, no press any key to continue
+
+	* No wait, dispatch remote commands to shell if  |vim-dispatch| or
+	|vim-iterm-start| available
+	
+	* Expose autoload functions, could be used anywhere.
+	
+	* Well designed default options, works out of box.
+
+	* Friendly to other plugins, commands are disabled by default to avoid
+	conflict, |buftype| are set to nofile and |bufhidden| are set to
+	delete for the temporary buffers.
+
+	* Enhanced gitlog support, implemented in a separate plugin
+	https://github.com/chemzqm/unite-git-log, which make uses the power of
+	|unite.vim|
+
+## COMMANDS
+
+Commands are disabled by default to make it works with fugitive by default, , you have to add
+
+    let g:easygit_enable_command = 1
+
+to your `.vimrc`, no further action required.
+
+* *Gcd*             make vim cd to git root directory.
+* *Glcd*            make vim lcd to git root directory.
+* *Gblame*          Git blame current file, you can use `p` to preview commit and `d`
+to diff with current file.
+* *GcommitCurrent*  Git commit current file with message as command args.
+* *GdiffThis*       Side by side diff of current file with head or any ref.
+* *Gcommit*         Git commit with command line argument.
+* *Gedit*           Edit git reference from git show.
+* *Gdiff*           Git diff with command line argument.
+* *Gremove*         Git remove with command line argument, remove current file
+when arguments empty.
+* *Grename*         Rename current by git mv, file in buffer list would react the changes.
+* *Gmove*           Git mv with command line argument.
+* *Gcheckout*       Git checkout with command line argument.
+* *Gpush*           Git push with arguments, dispatch when possible.
+* *Gpull*           Git pull with arguments, dispatch when possible.
+* *Gfetch*          Git fetch with arguments, dispatch when possible.
+* *Gadd*            Git add with arguments.
+* *Gstatus*         Show git status in a temporary buffer.
+* *Ggrep*           Git grep repo of current file, and show result in quickfix
+* *Gmerge*          Git merge with branch complete
+
+Those commands have reasonable complete setting, use `<tab>` to complete
+commands.
+
+See more information at doc/easygit.txt
+
+## Feedback
+
+Feel free to let me know if you have any problem with this script at https://github.com/chemzqm/vim-easygit/issues
